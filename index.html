@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Andaman Blue · 安达曼蓝 — 泰国私人出海 | Private boat trips in Thailand</title>
+<meta name="description" content="Andaman Blue：甲米、皮皮岛、普吉、苏梅、兰塔、芭提雅私人出海。中文 · 日本語 · 한국어 · Tiếng Việt.">
+<meta property="og:title" content="Andaman Blue · 安达曼蓝">
+<meta property="og:description" content="把一整天，交给大海。Private boat trips in Thailand — 中文 · 日本語 · 한국어 · Tiếng Việt">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%230B2A3C'/%3E%3Cpath d='M8 26 C12 22 16 22 20 26 C24 30 28 30 32 26' stroke='%235EE0D2' stroke-width='2.4' fill='none'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;family=Noto+Serif+JP:wght@600;900&amp;family=Noto+Serif+KR:wght@600;900&amp;family=Noto+Serif+SC:wght@600;900&amp;family=Plus+Jakarta+Sans:wght@400;500;600;800&amp;display=swap">
+<style>
+body{margin:0;background:#F4F9F8}
+a{color:#0B7A72}a:hover{color:#0B2A3C}
+*{box-sizing:border-box}
+.ab-btn{transition:transform .2s ease, box-shadow .2s ease}
+.ab-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(11,42,60,.14)}
+.ab-card{transition:transform .35s ease, box-shadow .35s ease}
+.ab-card:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(11,42,60,.12)}
+.ab-track{display:flex;gap:56px;width:max-content;animation:ab-scroll 38s linear infinite}
+@keyframes ab-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ab-float{animation:ab-bob 6s ease-in-out infinite}
+@keyframes ab-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@media (prefers-reduced-motion: reduce){.ab-track,.ab-float{animation:none}}
+input,select,textarea{font:inherit}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #0B7A72;outline-offset:2px}
+</style>
+
+<style>html{scroll-behavior:smooth}@media (max-width:700px){header{position:static !important}}</style>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+
+<div style="font-family: {{bodyFont}}; color: #0B2A3C; background: #F4F9F8; min-height: 100vh; overflow-x: hidden">
+
+<!-- NAV -->
+<header style="position: sticky; top: 0; z-index: 10; background: rgba(244,249,248,0.86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(11,42,60,0.08)">
+<div style="max-width: 1280px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="#top" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #0B2A3C">
+<svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#0B2A3C"></circle><path d="M8 26 C12 22 16 22 20 26 C24 30 28 30 32 26" stroke="#5EE0D2" stroke-width="2.4" fill="none" stroke-linecap="round"></path><path d="M13 21 L17 10 L21 21 M19 21 L24 13 L28 21" stroke="#FF8A65" stroke-width="2.4" fill="none" stroke-linejoin="round" stroke-linecap="round"></path></svg>
+<span style="display: flex; flex-direction: column; line-height: 1.1">
+<span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.02em">Andaman Blue</span>
+<span style="font-size: 12px; color: #4A6270; letter-spacing: 0.2em">安达曼蓝 · アンダマンブルー</span>
+</span>
+</a>
+<nav aria-label="Menu" style="display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 15px; font-weight: 500">
+<a href="#destinations" style="color: #0B2A3C; text-decoration: none; padding: 10px 0">{{t.navDest}}</a>
+<a href="#boats" style="color: #0B2A3C; text-decoration: none; padding: 10px 0">{{t.navExp}}</a>
+<a href="#why" style="color: #0B2A3C; text-decoration: none; padding: 10px 0">{{t.navWhy}}</a>
+<a href="#how" style="color: #0B2A3C; text-decoration: none; padding: 10px 0">{{t.navHow}}</a>
+<a href="#contact" style="color: #0B2A3C; text-decoration: none; padding: 10px 0">{{t.navContact}}</a>
+</nav>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+<div role="group" aria-label="Language" style="display: flex; gap: 2px; padding: 4px; background: #FFFFFF; border: 1px solid rgba(11,42,60,0.1); border-radius: 999px">
+<sc-for list="{{langs}}" as="l" hint-placeholder-count="5">
+<button type="button" onClick="{{l.pick}}" aria-pressed="{{l.pressed}}" style="border: 0; cursor: pointer; min-height: 36px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 600; background: {{l.bg}}; color: {{l.fg}}">{{l.label}}</button>
+</sc-for>
+</div>
+<a class="ab-btn" href="#contact" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 999px; background: #0B2A3C; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 15px">{{t.navCta}}</a>
+</div>
+</div>
+</header>
+
+<!-- HERO -->
+<section id="top" style="max-width: 1280px; margin: 0 auto; padding: 72px 24px 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 56px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 28px">
+<span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 999px; background: #DFF3EF; color: #0B5F58; font-size: 14px; font-weight: 600">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 16c2.5 2 5 2 7.5 0s5-2 7.5 0 3.5 1.5 5 0"></path><path d="M12 3v9M12 4l6 7h-6"></path></svg>
+{{t.kicker}}
+</span>
+<h1 style="margin: 0; font-family: {{displayFont}}; font-weight: 900; font-size: clamp(46px, 6.4vw, 96px); line-height: 1.08; letter-spacing: -0.02em; white-space: pre-line">{{t.h1}}</h1>
+<p style="margin: 0; font-size: 19px; line-height: 1.7; color: #4A6270; max-width: 34em">{{t.sub}}</p>
+<div style="display: flex; flex-wrap: wrap; gap: 14px">
+<a class="ab-btn" href="#contact" style="display: inline-flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 30px; border-radius: 999px; background: {{accent}}; color: #0B2A3C; text-decoration: none; font-weight: 700; font-size: 17px">{{t.cta1}}
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a class="ab-btn" href="#destinations" style="display: inline-flex; align-items: center; min-height: 56px; padding: 0 28px; border-radius: 999px; border: 1.5px solid #0B2A3C; color: #0B2A3C; text-decoration: none; font-weight: 600; font-size: 17px">{{t.cta2}}</a>
+</div>
+<p style="margin: 0; font-size: 14px; color: #4A6270; letter-spacing: 0.04em">{{t.note}}</p>
+</div>
+
+<div style="position: relative">
+<div style="border-radius: 44px; overflow: hidden; background: #CFEDEA; box-shadow: 0 40px 80px rgba(11,42,60,0.16)">
+<img src="https://images.unsplash.com/photo-1534008897995-27a23e859048?auto=format&fit=crop&w=1400&q=75" alt="Maya Bay, Phi Phi" style="display: block; width: 100%; height: clamp(420px, 52vw, 680px); object-fit: cover">
+</div>
+<div aria-hidden="true" style="position: absolute; top: 36px; right: -8px; writing-mode: vertical-rl; font-family: 'Noto Serif SC', serif; font-weight: 900; font-size: 28px; letter-spacing: 0.4em; color: #0B2A3C; background: #FFFFFF; padding: 22px 12px; border-radius: 999px; box-shadow: 0 12px 30px rgba(11,42,60,0.12)">安達曼之藍</div>
+<div style="position: absolute; left: 24px; bottom: 24px; display: flex; flex-wrap: wrap; gap: 8px">
+<span style="padding: 10px 16px; border-radius: 999px; background: rgba(255,255,255,0.88); backdrop-filter: blur(8px); font-size: 14px; font-weight: 600">Longtail</span>
+<span style="padding: 10px 16px; border-radius: 999px; background: rgba(255,255,255,0.88); backdrop-filter: blur(8px); font-size: 14px; font-weight: 600">Speedboat</span>
+<span style="padding: 10px 16px; border-radius: 999px; background: rgba(255,255,255,0.88); backdrop-filter: blur(8px); font-size: 14px; font-weight: 600">Catamaran</span>
+</div>
+</div>
+</section>
+
+<!-- MARQUEE -->
+<div aria-hidden="true" style="overflow: hidden; background: #0B2A3C; color: #F4F9F8; padding: 20px 0">
+<div class="ab-track" style="font-family: 'Noto Serif SC', serif; font-size: 24px; font-weight: 600; white-space: nowrap">
+<span>甲米 Krabi</span><span style="color: #FF8A65">✦</span><span>ピピ島 Phi Phi</span><span style="color: #FF8A65">✦</span><span>푸껫 Phuket</span><span style="color: #FF8A65">✦</span><span>Koh Samui 苏梅</span><span style="color: #FF8A65">✦</span><span>ランタ島 Koh Lanta</span><span style="color: #FF8A65">✦</span><span>파타야 Pattaya</span><span style="color: #FF8A65">✦</span>
+<span>甲米 Krabi</span><span style="color: #FF8A65">✦</span><span>ピピ島 Phi Phi</span><span style="color: #FF8A65">✦</span><span>푸껫 Phuket</span><span style="color: #FF8A65">✦</span><span>Koh Samui 苏梅</span><span style="color: #FF8A65">✦</span><span>ランタ島 Koh Lanta</span><span style="color: #FF8A65">✦</span><span>파타야 Pattaya</span><span style="color: #FF8A65">✦</span>
+</div>
+</div>
+
+<!-- DESTINATIONS -->
+<section id="destinations" style="max-width: 1280px; margin: 0 auto; padding: 112px 24px 48px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 760px">
+<span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.24em; color: #0B7A72">01 — DESTINATIONS</span>
+<h2 style="margin: 0; font-family: {{displayFont}}; font-weight: 900; font-size: clamp(36px, 4.4vw, 64px); line-height: 1.12">{{t.destTitle}}</h2>
+</div>
+<p style="margin: 0; max-width: 420px; font-size: 17px; line-height: 1.7; color: #4A6270">{{t.destSub}}</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 24px">
+<sc-for list="{{dests}}" as="it" hint-placeholder-count="6">
+<article class="ab-card" style="background: #FFFFFF; border-radius: 32px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid rgba(11,42,60,0.06)">
+<img src="{{it.photo}}" alt="{{it.latin}}" loading="lazy" style="display: block; width: 100%; height: 260px; object-fit: cover">
+<div style="padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 14px; flex-grow: 1">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px">
+<h3 style="margin: 0; font-family: {{displayFont}}; font-weight: 900; font-size: 30px">{{it.name}}</h3>
+<span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.16em; color: #4A6270">{{it.latin}}</span>
+</div>
+<p style="margin: 0; font-size: 16px; line-height: 1.7; color: #4A6270; flex-grow: 1">{{it.desc}}</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{it.tags}}" as="tg" hint-placeholder-count="3">
+<span style="padding: 6px 14px; border-radius: 999px; background: #EEF6F5; color: #0B5F58; font-size: 13px; font-weight: 600">{{tg.label}}</span>
+</sc-for>
+</div>
+</div>
+</article>
+</sc-for>
+</div>
+</section>
+
+<!-- BOATS -->
+<section id="boats" style="max-width: 1280px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.24em; color: #0B7A72">02 — BOATS</span>
+<h2 style="margin: 0; font-family: {{displayFont}}; font-weight: 900; font-size: clamp(36px, 4.4vw, 64px); line-height: 1.12">{{t.expTitle}}</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 20px">
+<sc-for list="{{exps}}" as="it" hint-placeholder-count="4">
+<div class="ab-card" style="background: {{it.bg}}; border-radius: 28px; padding: 12px 12px 28px; display: flex; flex-direction: column; gap: 18px; min-height: 280px">
+<img src="{{it.photo}}" alt="{{it.title}}" loading="lazy" style="display: block; width: 100%; height: 200px; object-fit: cover; border-radius: 20px">
+<div style="padding: 0 16px; display: flex; flex-direction: column; gap: 18px">
+<span style="width: 60px; height: 60px; border-radius: 20px; background: #FFFFFF; display: flex; align-items: center; justify-content: center">
+<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0B2A3C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{it.icon}}"></path></svg>
+</span>
+<h3 style="margin: 0; font-family: {{displayFont}}; font-weight: 900; font-size: 24px">{{it.title}}</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.7; color: #33505E">{{it.desc}}</p>
+</div>
+</div>
+</sc-for>
+</div>
+</section>
+
+<!-- WHY -->
+<section id="why" style="background: #0B2A3C; color: #F4F9F8; border-radius: 56px 56px 0 0">
+<div style="max-width: 1280px; margin: 0 auto; padding: 112px 24px; display: flex; flex-direction: column; gap: 56px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 820px">
+<span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.24em; color: #5EE0D2">03 — WHY US</span>
+<h2 style="margin: 0; font-family: {{displayFont}}; font-weight: 900; font-size: clamp(36px, 4.4vw, 64px); line-height: 1.12">{{t.whyTitle}}</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 40px 32px">
+<sc-for list="{{whys}}" as="it" hint-placeholder-count="4">
+<div style="display: flex; flex-direction: column; gap: 14px; padding-top: 24px; border-top: 1px solid rgba(244,249,248,0.2)">
+<span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 44px; color: #FF8A65">{{it.n}}</span>
+<h3 style="margin: 0; font-family: {{displayFont}}; font-weight: 900; font-size: 24px">{{it.title}}</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.75; color: #B9CED6">{{it.desc}}</p>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<span style="padding: 12px 20px; border-radius: 999px; border: 1px solid rgba(244,249,248,0.3); font-family: 'Noto Sans SC', sans-serif; font-size: 17px">中文</span>
+<span style="padding: 12px 20px; border-radius: 999px; border: 1px solid rgba(244,249,248,0.3); font-family: 'Noto Sans JP', sans-serif; font-size: 17px">日本語</span>
+<span style="padding: 12px 20px; border-radius: 999px; border: 1px solid rgba(244,249,248,0.3); font-family: 'Noto Sans KR', sans-serif; font-size: 17px">한국어</span>
+<span style="padding: 12px 20px; border-radius: 999px; border: 1px solid rgba(244,249,248,0.3); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px">Tiếng Việt</span>
+</div>
+</div>
+</section>
+
+<!-- HOW -->
+<section id="how" style="background: #0B2A3C">
+<div style="background: #F4F9F8; border-radius: 56px 56px 0 0">
+<div style="max-width: 1280px; margin: 0 auto; padding: 112px 24px 96px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.24em; color: #0B7A72">04 — HOW IT WORKS</span>
+<h2 style="margin: 0; font-family: {{displayFont}}; font-weight: 900; font-size: clamp(36px, 4.4vw, 64px); line-height: 1.12">{{t.howTitle}}</h2>
+</div>
+<ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 20px">
+<sc-for list="{{steps}}" as="it" hint-placeholder-count="3">
+<li style="background: #FFFFFF; border-radius: 28px; padding: 32px; display: flex; flex-direction: column; gap: 16px; border: 1px solid rgba(11,42,60,0.06)">
+<span style="width: 52px; height: 52px; border-radius: 999px; background: #DFF3EF; color: #0B5F58; display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 20px">{{it.n}}</span>
+<h3 style="margin: 0; font-family: {{displayFont}}; font-weight: 900; font-size: 24px">{{it.title}}</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.7; color: #4A6270">{{it.desc}}</p>
+</li>
+</sc-for>
+</ol>
+</div>
+</div>
+</section>
+
+<!-- GALLERY -->
+<section style="max-width: 1280px; margin: 0 auto; padding: 32px 24px 96px; display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.24em; color: #0B7A72">05 — INSPIRATION</span>
+<h2 style="margin: 0; font-family: {{displayFont}}; font-weight: 900; font-size: clamp(36px, 4.4vw, 64px); line-height: 1.12">{{t.galTitle}}</h2>
+</div>
+<span style="padding: 8px 16px; border-radius: 999px; background: #FFF1EA; color: #8A3A1C; font-size: 14px; font-weight: 600">Photos · Unsplash</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 16px; align-items: end">
+<sc-for list="{{gallery}}" as="it" hint-placeholder-count="5">
+<figure style="margin: 0; height: {{it.h}}; border-radius: 28px; background: {{it.bg}}; position: relative; overflow: hidden; display: flex; align-items: flex-end">
+<img src="{{it.photo}}" alt="{{it.label}}" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<figcaption style="position: relative; margin: 16px; padding: 10px 14px; border-radius: 16px; background: rgba(255,255,255,0.9); font-size: 14px; font-weight: 600; display: flex; gap: 8px; align-items: center">
+{{it.label}}</figcaption>
+</figure>
+</sc-for>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="max-width: 1280px; margin: 0 auto; padding: 0 24px 112px">
+<div style="background: #DFF3EF; border-radius: 48px; padding: clamp(32px, 5vw, 72px); display: flex; flex-wrap: wrap; gap: 56px">
+<div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 24px">
+<span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.24em; color: #0B5F58">06 — CONTACT</span>
+<h2 style="margin: 0; font-family: {{displayFont}}; font-weight: 900; font-size: clamp(34px, 4vw, 56px); line-height: 1.15">{{t.contactTitle}}</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.7; color: #33505E">{{t.contactSub}}</p>
+<p style="margin: 8px 0 0; font-size: 15px; font-weight: 700">{{t.channels}}</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<a class="ab-btn" href="#contact" style="display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 20px; border-radius: 999px; background: #FFFFFF; color: #0B2A3C; text-decoration: none; font-weight: 600">WhatsApp</a>
+<a class="ab-btn" href="#contact" style="display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 20px; border-radius: 999px; background: #FFFFFF; color: #0B2A3C; text-decoration: none; font-weight: 600">LINE</a>
+<a class="ab-btn" href="#contact" style="display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 20px; border-radius: 999px; background: #FFFFFF; color: #0B2A3C; text-decoration: none; font-weight: 600">WeChat 微信</a>
+<a class="ab-btn" href="#contact" style="display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 20px; border-radius: 999px; background: #FFFFFF; color: #0B2A3C; text-decoration: none; font-weight: 600">小红书</a>
+<a class="ab-btn" href="mailto:contact.pro.nbru@gmail.com" style="display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 20px; border-radius: 999px; background: #FFFFFF; color: #0B2A3C; text-decoration: none; font-weight: 600">contact.pro.nbru@gmail.com</a>
+</div>
+</div>
+
+<div style="flex: 1 1 420px; background: #FFFFFF; border-radius: 32px; padding: 32px">
+<sc-if value="{{submitted}}" hint-placeholder-val="{{ false }}">
+<div role="status" style="min-height: 420px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; text-align: center">
+<span style="width: 72px; height: 72px; border-radius: 999px; background: #DFF3EF; display: flex; align-items: center; justify-content: center">
+<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0B5F58" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>
+</span>
+<p style="margin: 0; font-family: {{displayFont}}; font-weight: 900; font-size: 26px; line-height: 1.4; max-width: 18em">{{t.thanks}}</p>
+</div>
+</sc-if>
+<sc-if value="{{notSubmitted}}" hint-placeholder-val="{{ true }}">
+<form onSubmit="{{submit}}" style="display: flex; flex-direction: column; gap: 18px">
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">{{t.fName}}
+<input type="text" name="name" required="required" style="min-height: 50px; padding: 0 16px; border-radius: 14px; border: 1.5px solid #C9DCDC; background: #F8FBFB; font-size: 16px; color: #0B2A3C"></label>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr)); gap: 16px">
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">{{t.fDate}}
+<input type="date" name="date" style="min-height: 50px; padding: 0 16px; border-radius: 14px; border: 1.5px solid #C9DCDC; background: #F8FBFB; font-size: 16px; color: #0B2A3C"></label>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">{{t.fPeople}}
+<input type="number" name="people" min="1" max="40" style="min-height: 50px; padding: 0 16px; border-radius: 14px; border: 1.5px solid #C9DCDC; background: #F8FBFB; font-size: 16px; color: #0B2A3C"></label>
+</div>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">{{t.fDest}}
+<select name="destination" style="min-height: 50px; padding: 0 16px; border-radius: 14px; border: 1.5px solid #C9DCDC; background: #F8FBFB; font-size: 16px; color: #0B2A3C">
+<sc-for list="{{dests}}" as="o" hint-placeholder-count="6"><option>{{o.name}} · {{o.latin}}</option></sc-for>
+</select></label>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">{{t.fMsg}}
+<textarea name="message" rows="4" placeholder="{{t.fMsgPh}}" style="padding: 14px 16px; border-radius: 14px; border: 1.5px solid #C9DCDC; background: #F8FBFB; font-size: 16px; color: #0B2A3C; resize: vertical"></textarea></label>
+<button class="ab-btn" type="submit" style="min-height: 56px; border: 0; cursor: pointer; border-radius: 999px; background: {{accent}}; color: #0B2A3C; font-weight: 700; font-size: 17px">{{t.fSubmit}}</button>
+</form>
+</sc-if>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="border-top: 1px solid rgba(11,42,60,0.1)">
+<div style="max-width: 1280px; margin: 0 auto; padding: 40px 24px 56px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; font-size: 14px; color: #4A6270">
+<span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 18px; color: #0B2A3C">Andaman Blue</span>
+<p style="margin: 0; max-width: 640px; line-height: 1.7">{{t.footer}}</p>
+<span>© 2026 Andaman Blue · Photos : Unsplash</span>
+</div>
+</footer>
+
+</div>
+</template>
+<script>
+class DCLogic{constructor(props){this.props=props||{};this.state={};}
+setState(p){Object.assign(this.state,p);render();}forceUpdate(){render();}}
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { lang: "zh", submitted: false };
+  }
+  renderVals() {
+    var self = this;
+    var lang = this.state.lang;
+    var T = {
+      zh: {
+        navDest: "目的地", navExp: "出海方式", navWhy: "为什么选我们", navHow: "如何预约", navContact: "联系", navCta: "免费咨询",
+        kicker: "泰国 · 安达曼海 & 暹罗湾私人出海",
+        h1: "把一整天，\n交给大海。",
+        sub: "甲米、皮皮岛、普吉、苏梅、兰塔、芭提雅——长尾船、快艇、双体船，用你的母语轻松预约。",
+        cta1: "定制我的出海日", cta2: "看看去哪儿",
+        note: "中文 · 日本語 · 한국어 · Tiếng Việt 全程服务",
+        destTitle: "六片海，六种蓝", destSub: "从石灰岩峭壁到珊瑚浅滩，每个目的地都有属于自己的颜色。",
+        expTitle: "选一艘属于你的船", whyTitle: "为什么选择 Andaman Blue", howTitle: "三步出海",
+        galTitle: "灵感相册", galSub: "真实照片即将上线",
+        contactTitle: "告诉我们你的理想一天", contactSub: "留下信息，我们会用你的语言回复。", channels: "或者直接联系",
+        fName: "姓名", fDate: "出发日期", fPeople: "人数", fDest: "目的地", fMsg: "想说的话", fMsgPh: "例如：想看日落、带小孩、怕晕船……", fSubmit: "发送咨询",
+        thanks: "已收到！我们会尽快用你的语言回复你。",
+        footer: "Andaman Blue 是营销合作平台：行程由持有泰国旅游局（TAT）执照的本地运营商组织并收款。",
+        d: [
+          ["甲米", "石灰岩峭壁、隐秘泻湖与四岛跳岛，安达曼海最经典的明信片。", ["四岛", "洪岛", "莱利"]],
+          ["皮皮岛", "玛雅湾的碧绿海水。清晨出发，避开人潮。", ["玛雅湾", "竹岛", "浮潜"]],
+          ["普吉", "攀牙湾的海上石林与詹姆斯·邦德岛。", ["攀牙湾", "双体船", "日落"]],
+          ["苏梅", "安通国家海洋公园的群岛，以及龟岛浮潜。", ["安通", "龟岛", "南园岛"]],
+          ["兰塔", "安静慢节奏，前往格拉丹岛与洛克岛的清澈海水。", ["洛克岛", "格拉丹岛", "四岛"]],
+          ["芭提雅", "离曼谷最近的海岛一日游，格兰岛的白沙滩。", ["格兰岛", "沙美岛", "包船"]]
+        ],
+        e: [
+          ["私人长尾船", "泰式传统木船，灵活靠岸，适合小团体和情侣。"],
+          ["快艇包船", "一天多岛，速度快，行程由你决定。"],
+          ["双体船巡游", "宽敞甲板，日落时分最美，适合家庭与朋友。"],
+          ["精品小团", "和少量旅伴同行，轻松又省心。"]
+        ],
+        w: [
+          ["用母语沟通", "中文、日语、韩语、越南语——从咨询到出发前确认，没有语言障碍。"],
+          ["持照本地运营商", "每一次出海都由持有泰国旅游局（TAT）执照的本地运营商执行。"],
+          ["天气优先", "海况不佳时，我们协助你改期，或按运营商政策办理退款。"],
+          ["出片路线", "我们告诉你最佳出发时间和最好看的拍照角度。"]
+        ],
+        s: [
+          ["选目的地和船型", "挑一片心动的海，再选一种船。"],
+          ["发来日期和人数", "通过表单、WhatsApp 或 LINE 告诉我们。"],
+          ["确认出发", "本地运营商确认行程，出发前一天告知集合时间和地点。"]
+        ],
+        g: ["玛雅湾清晨", "攀牙湾石林", "日落出海", "隐秘泻湖", "安通群岛"]
+      },
+      ja: {
+        navDest: "行き先", navExp: "ボート", navWhy: "選ばれる理由", navHow: "予約の流れ", navContact: "お問い合わせ", navCta: "無料相談",
+        kicker: "タイ・アンダマン海＆タイランド湾 プライベートボート",
+        h1: "一日まるごと、\n海にあずけて。",
+        sub: "クラビ、ピピ島、プーケット、サムイ、ランタ、パタヤ。ロングテール、スピードボート、カタマランを母国語でかんたん予約。",
+        cta1: "私の海の一日をつくる", cta2: "行き先を見る",
+        note: "中文 · 日本語 · 한국어 · Tiếng Việt 対応",
+        destTitle: "六つの海、六つの青", destSub: "石灰岩の断崖からサンゴの浅瀬まで、それぞれの海にそれぞれの色。",
+        expTitle: "あなたにぴったりのボートを", whyTitle: "Andaman Blue が選ばれる理由", howTitle: "3ステップで海へ",
+        galTitle: "インスピレーション", galSub: "実際の写真はまもなく公開",
+        contactTitle: "理想の一日を教えてください", contactSub: "メッセージをいただければ、あなたの言葉でお返事します。", channels: "直接のご連絡はこちら",
+        fName: "お名前", fDate: "出発日", fPeople: "人数", fDest: "行き先", fMsg: "メッセージ", fMsgPh: "例：夕日が見たい、子ども連れ、船酔いが心配…", fSubmit: "相談を送る",
+        thanks: "受け付けました！あなたの言葉で早めにお返事します。",
+        footer: "Andaman Blue はマーケティングパートナーです。ツアーはTATライセンスを持つ現地運営会社が催行し、代金を受け取ります。",
+        d: [
+          ["クラビ", "石灰岩の断崖、秘密のラグーン、4アイランド。アンダマン海の定番の絶景。", ["4アイランド", "ホン島", "ライレイ"]],
+          ["ピピ島", "マヤベイのエメラルドの海。朝早く出て混雑を避けて。", ["マヤベイ", "バンブー島", "シュノーケル"]],
+          ["プーケット", "パンガー湾の奇岩とジェームズ・ボンド島。", ["パンガー湾", "カタマラン", "サンセット"]],
+          ["サムイ島", "アントン国立海洋公園の島々と、タオ島でのシュノーケル。", ["アントン", "タオ島", "ナンユアン島"]],
+          ["ランタ島", "静かでゆったり。透明度の高いクラダン島とロック島へ。", ["ロック島", "クラダン島", "4アイランド"]],
+          ["パタヤ", "バンコクから一番近い島への日帰り旅。ラン島の白い砂浜。", ["ラン島", "サメット島", "チャーター"]]
+        ],
+        e: [
+          ["プライベート・ロングテール", "タイ伝統の木造船。小回りがきき、少人数やカップルに。"],
+          ["スピードボート貸切", "一日で多くの島へ。旅程は自由自在。"],
+          ["カタマランクルーズ", "広いデッキ、夕暮れが最高。家族や友人と。"],
+          ["少人数ツアー", "少ない仲間と、気軽に安心。"]
+        ],
+        w: [
+          ["母国語で相談", "中国語・日本語・韓国語・ベトナム語で、問い合わせから出発前の確認まで。"],
+          ["認可を受けた現地会社", "すべてのツアーはタイ国政府観光庁（TAT）のライセンスを持つ現地会社が催行。"],
+          ["天候を最優先", "海が荒れた日は、日程変更や運営会社の規定に沿った返金をサポート。"],
+          ["映える航路", "ベストな出発時間と撮影スポットをお伝えします。"]
+        ],
+        s: [
+          ["行き先とボートを選ぶ", "気になる海と船のタイプを選ぶだけ。"],
+          ["日程と人数を送る", "フォーム、WhatsApp、LINEで。"],
+          ["出発を確定", "現地会社が確定し、前日に集合時間と場所をお知らせ。"]
+        ],
+        g: ["朝のマヤベイ", "パンガー湾の奇岩", "夕暮れのクルーズ", "秘密のラグーン", "アントン諸島"]
+      },
+      ko: {
+        navDest: "여행지", navExp: "보트", navWhy: "선택하는 이유", navHow: "예약 방법", navContact: "문의", navCta: "무료 상담",
+        kicker: "태국 안다만해 & 타이만 프라이빗 보트 투어",
+        h1: "하루를 온전히,\n바다에 맡기세요.",
+        sub: "끄라비, 피피섬, 푸껫, 사무이, 란타, 파타야. 롱테일, 스피드보트, 카타마란을 모국어로 쉽게 예약하세요.",
+        cta1: "나만의 바다 하루 만들기", cta2: "여행지 보기",
+        note: "中文 · 日本語 · 한국어 · Tiếng Việt 지원",
+        destTitle: "여섯 개의 바다, 여섯 가지 파랑", destSub: "석회암 절벽부터 산호 얕은 바다까지, 바다마다 저마다의 색이 있어요.",
+        expTitle: "나에게 맞는 보트를 골라보세요", whyTitle: "Andaman Blue를 선택하는 이유", howTitle: "3단계로 바다까지",
+        galTitle: "영감 앨범", galSub: "실제 사진이 곧 공개됩니다",
+        contactTitle: "당신의 완벽한 하루를 알려주세요", contactSub: "메시지를 남기시면 당신의 언어로 답장드려요.", channels: "바로 연락하기",
+        fName: "이름", fDate: "출발 날짜", fPeople: "인원", fDest: "여행지", fMsg: "메시지", fMsgPh: "예: 선셋을 보고 싶어요, 아이와 함께, 뱃멀미가 걱정돼요…", fSubmit: "상담 보내기",
+        thanks: "접수되었어요! 당신의 언어로 곧 답장드릴게요.",
+        footer: "Andaman Blue는 마케팅 파트너입니다. 투어는 TAT 라이선스를 보유한 현지 운영사가 진행하며 결제를 받습니다.",
+        d: [
+          ["끄라비", "석회암 절벽, 숨은 라군, 4섬 투어. 안다만해의 대표 풍경.", ["4섬", "홍섬", "라일레이"]],
+          ["피피섬", "마야베이의 에메랄드빛 바다. 이른 아침 출발로 붐비는 시간을 피하세요.", ["마야베이", "뱀부섬", "스노클링"]],
+          ["푸껫", "팡아만의 기암괴석과 제임스 본드 섬.", ["팡아만", "카타마란", "선셋"]],
+          ["사무이", "앙통 국립해양공원의 섬들과 꼬따오 스노클링.", ["앙통", "꼬따오", "낭유안"]],
+          ["란타", "조용하고 느긋하게, 맑은 꼬끄라단과 꼬록으로.", ["꼬록", "꼬끄라단", "4섬"]],
+          ["파타야", "방콕에서 가장 가까운 섬 당일치기, 꼬란의 하얀 해변.", ["꼬란", "꼬사멧", "전세 보트"]]
+        ],
+        e: [
+          ["프라이빗 롱테일", "태국 전통 목선. 작은 그룹과 커플에게 딱."],
+          ["스피드보트 단독 대여", "하루에 여러 섬을, 일정은 내 마음대로."],
+          ["카타마란 크루즈", "넓은 갑판, 해 질 녘이 가장 아름다워요. 가족·친구와 함께."],
+          ["소규모 그룹 투어", "적은 인원으로 편하고 여유롭게."]
+        ],
+        w: [
+          ["모국어 상담", "중국어·일본어·한국어·베트남어로 문의부터 출발 전 확인까지."],
+          ["공인 현지 운영사", "모든 투어는 태국관광청(TAT) 라이선스를 보유한 현지 운영사가 진행합니다."],
+          ["날씨가 우선", "바다 상황이 좋지 않으면 일정 변경이나 운영사 규정에 따른 환불을 도와드려요."],
+          ["인생샷 코스", "최고의 출발 시간과 촬영 포인트를 알려드려요."]
+        ],
+        s: [
+          ["여행지와 보트 선택", "마음에 드는 바다와 보트를 고르세요."],
+          ["날짜와 인원 보내기", "폼, WhatsApp, LINE으로 알려주세요."],
+          ["출발 확정", "현지 운영사가 확정하고, 하루 전 집합 시간과 장소를 알려드려요."]
+        ],
+        g: ["아침의 마야베이", "팡아만 기암", "선셋 크루즈", "숨은 라군", "앙통 군도"]
+      },
+      vi: {
+        navDest: "Điểm đến", navExp: "Loại thuyền", navWhy: "Vì sao chọn chúng tôi", navHow: "Cách đặt", navContact: "Liên hệ", navCta: "Tư vấn miễn phí",
+        kicker: "Tour thuyền riêng · Biển Andaman & Vịnh Thái Lan",
+        h1: "Trao trọn một ngày\ncho biển cả.",
+        sub: "Krabi, Phi Phi, Phuket, Koh Samui, Koh Lanta, Pattaya — thuyền đuôi dài, cano, catamaran, đặt dễ dàng bằng tiếng mẹ đẻ.",
+        cta1: "Thiết kế ngày ra khơi", cta2: "Xem điểm đến",
+        note: "Hỗ trợ 中文 · 日本語 · 한국어 · Tiếng Việt",
+        destTitle: "Sáu vùng biển, sáu sắc xanh", destSub: "Từ vách đá vôi đến bãi san hô, mỗi điểm đến có một màu xanh riêng.",
+        expTitle: "Chọn con thuyền dành cho bạn", whyTitle: "Vì sao chọn Andaman Blue", howTitle: "Ra khơi trong 3 bước",
+        galTitle: "Album cảm hứng", galSub: "Ảnh thật sắp ra mắt",
+        contactTitle: "Kể cho chúng tôi về ngày lý tưởng của bạn", contactSub: "Để lại lời nhắn, chúng tôi sẽ trả lời bằng ngôn ngữ của bạn.", channels: "Hoặc liên hệ trực tiếp",
+        fName: "Họ tên", fDate: "Ngày khởi hành", fPeople: "Số người", fDest: "Điểm đến", fMsg: "Lời nhắn", fMsgPh: "Ví dụ: muốn ngắm hoàng hôn, đi cùng trẻ nhỏ, sợ say sóng…", fSubmit: "Gửi yêu cầu",
+        thanks: "Đã nhận! Chúng tôi sẽ sớm trả lời bằng ngôn ngữ của bạn.",
+        footer: "Andaman Blue là đối tác tiếp thị: các chuyến đi do nhà điều hành địa phương có giấy phép TAT tổ chức và thu tiền.",
+        d: [
+          ["Krabi", "Vách đá vôi, đầm phá ẩn mình và tour 4 đảo — tấm bưu thiếp kinh điển của biển Andaman.", ["4 đảo", "Đảo Hong", "Railay"]],
+          ["Phi Phi", "Làn nước ngọc bích của vịnh Maya. Khởi hành sớm để tránh đông người.", ["Vịnh Maya", "Đảo Bamboo", "Lặn ống thở"]],
+          ["Phuket", "Những cột đá giữa biển ở vịnh Phang Nga và đảo James Bond.", ["Phang Nga", "Catamaran", "Hoàng hôn"]],
+          ["Koh Samui", "Quần đảo vườn quốc gia biển Ang Thong và lặn ở Koh Tao.", ["Ang Thong", "Koh Tao", "Nang Yuan"]],
+          ["Koh Lanta", "Yên bình, chậm rãi, hướng tới làn nước trong vắt của Koh Kradan và Koh Rok.", ["Koh Rok", "Koh Kradan", "4 đảo"]],
+          ["Pattaya", "Chuyến đảo trong ngày gần Bangkok nhất, bãi cát trắng Koh Larn.", ["Koh Larn", "Koh Samet", "Thuê thuyền"]]
+        ],
+        e: [
+          ["Thuyền đuôi dài riêng", "Thuyền gỗ truyền thống Thái, linh hoạt, hợp nhóm nhỏ và cặp đôi."],
+          ["Thuê cano riêng", "Nhiều đảo trong một ngày, lịch trình do bạn quyết định."],
+          ["Du thuyền catamaran", "Boong rộng, đẹp nhất lúc hoàng hôn, hợp gia đình và bạn bè."],
+          ["Tour nhóm nhỏ", "Đi cùng ít bạn đồng hành, nhẹ nhàng và an tâm."]
+        ],
+        w: [
+          ["Tư vấn bằng tiếng mẹ đẻ", "Tiếng Trung, Nhật, Hàn, Việt — từ lúc hỏi đến khi xác nhận trước giờ đi."],
+          ["Nhà điều hành có giấy phép", "Mọi chuyến đi do nhà điều hành địa phương có giấy phép của Cục Du lịch Thái Lan (TAT) thực hiện."],
+          ["Thời tiết là ưu tiên", "Khi biển động, chúng tôi hỗ trợ đổi ngày hoặc hoàn tiền theo chính sách của nhà điều hành."],
+          ["Lộ trình sống ảo", "Gợi ý giờ khởi hành đẹp nhất và góc chụp ấn tượng."]
+        ],
+        s: [
+          ["Chọn điểm đến và thuyền", "Vùng biển bạn mơ ước và kiểu thuyền phù hợp."],
+          ["Gửi ngày và số người", "Qua biểu mẫu, WhatsApp hoặc LINE."],
+          ["Xác nhận khởi hành", "Nhà điều hành xác nhận, báo giờ và điểm hẹn trước một ngày."]
+        ],
+        g: ["Vịnh Maya buổi sớm", "Đá vôi Phang Nga", "Hoàng hôn trên biển", "Đầm phá ẩn mình", "Quần đảo Ang Thong"]
+      },
+      fr: {
+        navDest: "Destinations", navExp: "Bateaux", navWhy: "Pourquoi nous", navHow: "Réserver", navContact: "Contact", navCta: "Conseil gratuit",
+        kicker: "Sorties en bateau privé · Mer d’Andaman & golfe de Thaïlande",
+        h1: "Offrez une journée\nentière à la mer.",
+        sub: "Krabi, Phi Phi, Phuket, Koh Samui, Koh Lanta, Pattaya — longtail, speedboat, catamaran, réservés simplement dans votre langue.",
+        cta1: "Créer ma journée en mer", cta2: "Voir les destinations",
+        note: "Service en 中文 · 日本語 · 한국어 · Tiếng Việt",
+        destTitle: "Six mers, six bleus", destSub: "Des falaises calcaires aux hauts-fonds coralliens, chaque destination a sa couleur.",
+        expTitle: "Choisissez votre bateau", whyTitle: "Pourquoi Andaman Blue", howTitle: "En mer en 3 étapes",
+        galTitle: "Album d’inspiration", galSub: "Les vraies photos arrivent bientôt",
+        contactTitle: "Racontez-nous votre journée idéale", contactSub: "Laissez un message, nous vous répondons dans votre langue.", channels: "Ou contactez-nous directement",
+        fName: "Nom", fDate: "Date de départ", fPeople: "Personnes", fDest: "Destination", fMsg: "Message", fMsgPh: "Ex. : voir le coucher de soleil, avec des enfants, peur du mal de mer…", fSubmit: "Envoyer ma demande",
+        thanks: "Bien reçu ! Nous vous répondons vite, dans votre langue.",
+        footer: "Andaman Blue est un partenaire marketing : les sorties sont organisées et encaissées par des opérateurs locaux titulaires d’une licence TAT.",
+        d: [
+          ["Krabi", "Falaises calcaires, lagons cachés et tour des 4 îles : la carte postale de la mer d’Andaman.", ["4 îles", "Hong Island", "Railay"]],
+          ["Phi Phi", "L’eau émeraude de Maya Bay. Départ tôt pour éviter la foule.", ["Maya Bay", "Bamboo Island", "Snorkeling"]],
+          ["Phuket", "Les pitons de la baie de Phang Nga et l’île de James Bond.", ["Phang Nga", "Catamaran", "Coucher de soleil"]],
+          ["Koh Samui", "Les îles du parc marin d’Ang Thong et le snorkeling à Koh Tao.", ["Ang Thong", "Koh Tao", "Nang Yuan"]],
+          ["Koh Lanta", "Calme et lenteur, cap sur les eaux limpides de Koh Kradan et Koh Rok.", ["Koh Rok", "Koh Kradan", "4 îles"]],
+          ["Pattaya", "L’escapade insulaire la plus proche de Bangkok, plages blanches de Koh Larn.", ["Koh Larn", "Koh Samet", "Charter"]]
+        ],
+        e: [
+          ["Longtail privé", "Le bateau traditionnel thaï en bois, agile, idéal en couple ou petit groupe."],
+          ["Speedboat privatisé", "Plusieurs îles en une journée, à votre rythme."],
+          ["Croisière en catamaran", "Grand pont, magique au coucher du soleil, parfait en famille ou entre amis."],
+          ["Petit groupe", "Quelques compagnons de route, simple et serein."]
+        ],
+        w: [
+          ["Dans votre langue", "Chinois, japonais, coréen, vietnamien : de la demande à la confirmation avant le départ."],
+          ["Opérateurs licenciés", "Chaque sortie est assurée par un opérateur local titulaire d’une licence de l’office du tourisme thaïlandais (TAT)."],
+          ["La météo d’abord", "Si la mer est mauvaise, nous vous aidons à décaler ou à être remboursé selon la politique de l’opérateur."],
+          ["Itinéraires photogéniques", "Les meilleures heures de départ et les plus beaux spots photo."]
+        ],
+        s: [
+          ["Choisissez mer et bateau", "La destination qui vous fait rêver et le type de bateau."],
+          ["Envoyez dates et nombre", "Par le formulaire, WhatsApp ou LINE."],
+          ["Départ confirmé", "L’opérateur confirme ; heure et lieu de rendez-vous la veille."]
+        ],
+        g: ["Maya Bay au petit matin", "Pitons de Phang Nga", "Coucher de soleil en mer", "Lagon caché", "Archipel d’Ang Thong"]
+      }
+    };
+    var t = T[lang];
+    var shapes = [
+      { far: "M-10 190 C10 150 20 90 50 95 C75 100 70 150 95 150 C120 150 115 70 150 72 C180 74 175 160 200 190 Z", near: "M220 190 C232 120 252 58 290 60 C328 62 322 130 348 128 C372 126 378 170 410 190 Z" },
+      { far: "M-10 190 C40 160 90 148 140 162 C180 174 210 158 260 164 C320 170 360 148 410 158 L410 190 Z", near: "M60 190 C80 148 110 118 150 122 C190 128 202 168 232 190 Z" },
+      { far: "M150 190 C160 128 176 68 200 58 C224 68 240 128 252 190 Z", near: "M-10 190 C30 168 60 138 100 148 C130 156 142 178 162 190 Z M290 190 C310 158 340 144 370 148 C392 152 402 170 410 190 Z" }
+    ];
+    var base = [
+      { photo: "https://images.unsplash.com/photo-1681356771587-27224ea16097?auto=format&fit=crop&w=900&q=75", latin: "KRABI", s: 0, sunX: 300, sky: "#D6F0EC", sun: "#FFB08A", farC: "#8CC4BB", nearC: "#2E6F6A", sea: "#1FA79B" },
+      { photo: "https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?auto=format&fit=crop&w=900&q=75", latin: "PHI PHI", s: 2, sunX: 90, sky: "#E2F5F2", sun: "#FFD3A8", farC: "#8FCFC4", nearC: "#24766E", sea: "#14B8A6" },
+      { photo: "https://images.unsplash.com/photo-1735228043914-09ed81c15480?auto=format&fit=crop&w=900&q=75", latin: "PHUKET", s: 0, sunX: 320, sky: "#FFE5D6", sun: "#FF8A65", farC: "#CFAFBD", nearC: "#5B4A6B", sea: "#3C7A9A" },
+      { photo: "https://images.unsplash.com/photo-1563314706-38d8c9940942?auto=format&fit=crop&w=900&q=75", latin: "KOH SAMUI", s: 1, sunX: 300, sky: "#DCEEFA", sun: "#FFE7A8", farC: "#A3CBE2", nearC: "#3E7CA3", sea: "#2A8FC7" },
+      { photo: "https://images.unsplash.com/photo-1741336313969-1457e7a41d8e?auto=format&fit=crop&w=900&q=75", latin: "KOH LANTA", s: 1, sunX: 90, sky: "#E8F5EE", sun: "#FFCFA0", farC: "#A9D5BC", nearC: "#3F7D60", sea: "#2BAE9E" },
+      { photo: "https://images.unsplash.com/photo-1620374710130-51526b5200f7?auto=format&fit=crop&w=900&q=75", latin: "PATTAYA", s: 2, sunX: 320, sky: "#FCEBE3", sun: "#FFB4A2", farC: "#E2BCB1", nearC: "#8E5A5A", sea: "#2C8DB0" }
+    ];
+    var dests = base.map(function (b, i) {
+      var row = t.d[i];
+      return {
+        photo: b.photo, latin: b.latin, sunX: b.sunX, sky: b.sky, sun: b.sun, farC: b.farC, nearC: b.nearC, sea: b.sea,
+        far: shapes[b.s].far, near: shapes[b.s].near,
+        name: row[0], desc: row[1],
+        tags: row[2].map(function (x) { return { label: x }; })
+      };
+    });
+    var icons = [
+      "M2 15h20l-3 4H6zM5 15l2-6h6l1 6M17 9l2 6",
+      "M3 15h16l3-3h-7l-3-4H7l2 4H3zM2 19c2 1 4 1 6 0s4-1 6 0 4 1 6 0",
+      "M12 3v12M12 4l6 9h-6M4 17h16M5 17l1 3h12l1-3",
+      "M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM3 20c0-3 3-5 6-5s6 2 6 5M16 5a3 3 0 0 1 0 6M21 20c0-2.5-2-4.5-4-5"
+    ];
+    var expPh = ["https://images.unsplash.com/photo-1778642705715-fbfe275c4b3b?auto=format&fit=crop&w=800&q=75", "https://images.unsplash.com/photo-1538826421747-8fc0690ae387?auto=format&fit=crop&w=800&q=75", "https://images.unsplash.com/photo-1744347033825-67dd2a754bf0?auto=format&fit=crop&w=800&q=75", "https://images.unsplash.com/photo-1562568580-efc632397dd8?auto=format&fit=crop&w=800&q=75"];
+    var expBg = ["#DFF3EF", "#FFF1EA", "#E6F0FA", "#F3EEF8"];
+    var exps = t.e.map(function (x, i) { return { title: x[0], desc: x[1], icon: icons[i], bg: expBg[i], photo: expPh[i] }; });
+    var whys = t.w.map(function (x, i) { return { n: "0" + (i + 1), title: x[0], desc: x[1] }; });
+    var steps = t.s.map(function (x, i) { return { n: String(i + 1), title: x[0], desc: x[1] }; });
+    var gal = [
+      { h: "360px", bg: "#D6F0EC", fg: "#1FA79B" },
+      { h: "280px", bg: "#FFE5D6", fg: "#5B4A6B" },
+      { h: "400px", bg: "#FCE3D6", fg: "#E07A5F" },
+      { h: "300px", bg: "#E2F5F2", fg: "#24766E" },
+      { h: "340px", bg: "#DCEEFA", fg: "#2A8FC7" }
+    ];
+    var galPh = ["https://images.unsplash.com/photo-1652867769695-f08d770ce88e?auto=format&fit=crop&w=800&q=75", "https://images.unsplash.com/photo-1674043549153-fd19e38b5197?auto=format&fit=crop&w=800&q=75", "https://images.unsplash.com/photo-1744347033825-67dd2a754bf0?auto=format&fit=crop&w=800&q=75", "https://images.unsplash.com/photo-1688147203883-a73a95f89770?auto=format&fit=crop&w=800&q=75", "https://images.unsplash.com/photo-1563314830-9f79ee280594?auto=format&fit=crop&w=800&q=75"];
+    var gallery = gal.map(function (x, i) { return { h: x.h, bg: x.bg, fg: x.fg, label: t.g[i], photo: galPh[i] }; });
+    var codes = [["zh", "中文"], ["ja", "日本語"], ["ko", "한국어"], ["vi", "Tiếng Việt"], ["fr", "FR"]];
+    var langs = codes.map(function (c) {
+      var on = c[0] === lang;
+      return {
+        label: c[1], pressed: on ? "true" : "false",
+        bg: on ? "#0B2A3C" : "transparent", fg: on ? "#FFFFFF" : "#0B2A3C",
+        pick: function () { self.setState({ lang: c[0], submitted: false }); }
+      };
+    });
+    var displayFonts = { zh: "'Noto Serif SC', serif", ja: "'Noto Serif JP', serif", ko: "'Noto Serif KR', serif", vi: "'Plus Jakarta Sans', sans-serif", fr: "'Plus Jakarta Sans', sans-serif" };
+    var bodyFonts = { zh: "'Plus Jakarta Sans', 'Noto Sans SC', sans-serif", ja: "'Plus Jakarta Sans', 'Noto Sans JP', sans-serif", ko: "'Plus Jakarta Sans', 'Noto Sans KR', sans-serif", vi: "'Plus Jakarta Sans', sans-serif", fr: "'Plus Jakarta Sans', sans-serif" };
+    return {
+      t: t, dests: dests, exps: exps, whys: whys, steps: steps, gallery: gallery, langs: langs,
+      displayFont: displayFonts[lang], bodyFont: bodyFonts[lang],
+      accent: "#FF8A65",
+      submitted: this.state.submitted, notSubmitted: !this.state.submitted,
+      submit: function (e) { if (e && e.preventDefault) { e.preventDefault(); } self.setState({ submitted: true }); }
+    };
+  }
+}
+
+var comp=new Component({});
+var tpl=document.getElementById('tpl').content;
+var app=document.getElementById('app');
+function look(path,sc){path=path.trim();if(path==='true')return true;if(path==='false')return false;
+ var v=sc;path.split('.').forEach(function(k){v=(v==null)?undefined:v[k];});return v;}
+function whole(s){var m=/^\s*\{\{\s*([\w.$]+)\s*\}\}\s*$/.exec(s);return m?m[1]:null;}
+function interp(s,sc){return s.replace(/\{\{\s*([\w.$]+)\s*\}\}/g,function(_,p){var v=look(p,sc);return v==null?'':String(v);});}
+function build(n,sc,out){
+ if(n.nodeType===3){out.appendChild(document.createTextNode(interp(n.nodeValue,sc)));return;}
+ if(n.nodeType!==1){return;}
+ var tag=n.localName;
+ if(tag==='sc-for'){var list=look(whole(n.getAttribute('list')),sc)||[];var as=n.getAttribute('as')||'item';
+  list.forEach(function(it,i){var s=Object.create(sc);s[as]=it;s.$index=i;n.childNodes.forEach(function(c){build(c,s,out);});});return;}
+ if(tag==='sc-if'){if(look(whole(n.getAttribute('value')),sc)){n.childNodes.forEach(function(c){build(c,sc,out);});}return;}
+ var el=n.namespaceURI&&n.namespaceURI!=='http://www.w3.org/1999/xhtml'?document.createElementNS(n.namespaceURI,n.localName):document.createElement(tag);
+ Array.prototype.forEach.call(n.attributes,function(a){
+  if(a.name.indexOf('hint-')===0)return;
+  if(a.name.indexOf('on')===0&&whole(a.value)){var fn=look(whole(a.value),sc);if(typeof fn==='function')el.addEventListener(a.name.slice(2),fn);return;}
+  el.setAttribute(a.name,interp(a.value,sc));});
+ var kids=(tag==='template')?n.content.childNodes:n.childNodes;
+ kids.forEach(function(c){build(c,sc,el);});
+ out.appendChild(el);}
+function render(){var y=window.scrollY;var f=document.createDocumentFragment();var sc=comp.renderVals();
+ tpl.childNodes.forEach(function(c){build(c,sc,f);});app.replaceChildren(f);window.scrollTo(0,y);
+ document.documentElement.lang={zh:'zh-CN',ja:'ja',ko:'ko',vi:'vi',fr:'fr'}[comp.state.lang]||'zh-CN';}
+render();
+</script>
+</body>
+</html>
